@@ -1,0 +1,5 @@
+export { Hero } from "./Hero/Hero"
+export { Abilities } from "./Abilities/Abilities"
+export { HowItWorks } from "./HowItWorks/HowItWorks"
+export { Integrations } from "./Integrations/Integrations"
+export { ContactSection } from "./ContactSection/ContactSection"
