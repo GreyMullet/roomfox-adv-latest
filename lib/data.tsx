@@ -218,3 +218,67 @@ export const SEO_BLOCKS: SeoBlock[]=[
         ],
     },
 ]
+
+export function formMSG(name: string, phone: string, email: string, hotel: string, message: string){
+    const html=`
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #4F46E5; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 30px; border: 1px solid #e0e0e0; }
+            .field { margin-bottom: 15px; }
+            .label { font-weight: bold; color: #4F46E5; }
+            .footer { background: #f1f1f1; padding: 15px; text-align: center; font-size: 12px; color: #666; border-radius: 0 0 8px 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🦊 Roomfox</h1>
+                <p>Новая заявка на подключение модуля</p>
+            </div>
+            <div class="content">
+                <div class="field">
+                    <span class="label">Имя:</span> ${name}
+                </div>
+                <div class="field">
+                    <span class="label">Телефон:</span> ${phone}
+                </div>
+                <div class="field">
+                    <span class="label">Email:</span> ${email}
+                </div>
+                <div class="field">
+                    <span class="label">Отель:</span> ${hotel}
+                </div>
+                <div class="field">
+                    <span class="label">Сообщение:</span><br>
+                    ${message || '—'}
+                </div>
+            </div>
+            <div class="footer">
+                © ${new Date().getFullYear()} Roomfox. Все права защищены.
+            </div>
+        </div>
+    </body>
+    </html>
+    `.trim()
+    
+    const text = `
+    🦊 Roomfox — Новая заявка на подключение модуля
+    
+    Имя: ${name}
+    Телефон: ${phone}
+    Email: ${email}
+    Отель: ${hotel}
+    Сообщение: ${message || '—'}
+    
+    © ${new Date().getFullYear()} Roomfox. Все права защищены.
+    `.trim()
+
+    return { html, text }
+}

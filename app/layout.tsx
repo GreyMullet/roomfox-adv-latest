@@ -77,7 +77,7 @@ export const metadata: Metadata={
                 width: 1200,
                 height: 630,
                 alt: "Roomfox — модуль онлайн-заселения для отелей",
-                type: "image/jpeg",
+                type: "image/png",
             },
         ],
     },
@@ -132,7 +132,7 @@ const jsonLd={
             url: SITE_URL,
             logo: {
                 "@type": "ImageObject",
-                url: `${SITE_URL}/logo.png`,
+                url: `${SITE_URL}/icon-192.png`,
                 width: 512,
                 height: 512,
             },

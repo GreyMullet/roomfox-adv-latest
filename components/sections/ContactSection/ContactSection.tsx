@@ -6,6 +6,7 @@ import { CONTACTS } from "@/lib/data"
 
 export const ContactSection=()=>{
     const [isSubmitted, setIsSubmitted]=useState(false)
+    const [loading, setLoading]=useState(false)
     const [formData, setFormData]=useState({
         name: "",
         phone: "",
@@ -18,10 +19,30 @@ export const ContactSection=()=>{
         setFormData(prev=>({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const handleSubmit=(e: React.FormEvent)=>{
+    const handleSubmit=async (e: React.FormEvent)=>{
         e.preventDefault()
-        setIsSubmitted(true)
-        setTimeout(()=>setIsSubmitted(false), 5000)
+        setLoading(true)
+        setIsSubmitted(false)
+    
+        try{
+            const res=await fetch("/api/sendRequestConnection", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+            
+            if (res.status===201){
+                setIsSubmitted(true)
+                setFormData({ name: "", phone: "", email: "", hotel: "", message: "" })
+                setTimeout(()=>setIsSubmitted(false), 3000)
+            } else{
+                console.error("Server error:", await res.text())
+            }
+        } catch (err){
+            console.error("Network error:", err)
+        } finally{
+            setLoading(false)
+        }
     }
 
     return(
@@ -122,7 +143,7 @@ export const ContactSection=()=>{
                                     </div>
 
                                     <button type="submit" className="w-full sm:w-auto self-start px-8 py-4 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-all hover:scale-105 shadow-lg shadow-black/10">
-                                        Отправить заявку
+                                        {loading===true ? "Загрузка..." : "Отправить заявку"}
                                     </button>
                                 </form>
                             )}
