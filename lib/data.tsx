@@ -282,3 +282,14 @@ export function formMSG(name: string, phone: string, email: string, hotel: strin
 
     return { html, text }
 }
+
+export const VIDEOS=[
+    {
+        id: 1,
+        title: "Обзор быстрого поселения",
+        desc: "Оплата брони и заполнение документов онлайн",
+        src: "/videos/quick-checkin.mp4",
+        poster: "/videos/quick-checkin-poster.jfif",
+        duration: "3:24",
+    },
+]
