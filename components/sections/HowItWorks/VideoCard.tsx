@@ -1,3 +1,7 @@
+"use client"
+
+import { useRef, useEffect } from "react"
+
 type Video={
     id: number
     title: string
@@ -8,6 +12,23 @@ type Video={
 }
 
 export default function VideoCard({ video, isSingle }: { video: Video; isSingle: boolean }){
+    const videoRef=useRef<HTMLVideoElement>(null)
+
+    useEffect(()=>{
+        const handleFullscreenChange=()=>{
+            if (!document.fullscreenElement){
+                window.scrollTo({ top: window.scrollY })
+                ;(document.documentElement.style as any).zoom='1'
+                setTimeout(()=>{
+                    window.dispatchEvent(new Event('resize'))
+                }, 100)
+            }
+        }
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange)
+        return ()=>document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    }, [])
+
     return(
         <article
             className={`group relative cursor-pointer rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-md hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1 ${
@@ -16,6 +37,7 @@ export default function VideoCard({ video, isSingle }: { video: Video; isSingle:
         >
             <div className={`relative overflow-hidden ${isSingle ? 'aspect-video md:aspect-auto md:w-1/2 md:max-h-[400px]' : 'aspect-video'}`}>
                 <video
+                    ref={videoRef}
                     src={video.src}
                     poster={video.poster}
                     className="w-full h-full object-cover"
