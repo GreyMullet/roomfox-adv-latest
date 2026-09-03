@@ -19,6 +19,8 @@ export default function VideoCard({ video, isSingle }: { video: Video; isSingle:
             const html=document.documentElement
             const body=document.body
 
+            const scrollTop=window.scrollY || html.scrollTop || body.scrollTop
+
             html.style.transform='none'
             body.style.transform='none'
             ;(html.style as any).zoom='1'
@@ -26,14 +28,10 @@ export default function VideoCard({ video, isSingle }: { video: Video; isSingle:
             html.style.scrollBehavior='auto'
             body.style.scrollBehavior='auto'
 
-            body.style.display='none'
-            void body.offsetHeight
-            body.style.display=''
+            void html.offsetHeight
 
-            window.scrollTo({ top: window.scrollY, left: 0, behavior: 'auto' })
+            window.scrollTo({ left: 0, top: scrollTop, behavior: 'auto' })
 
-            setTimeout(resetPage, 50)
-            setTimeout(resetPage, 150)
             setTimeout(()=>{
                 html.style.transform=''
                 body.style.transform=''
@@ -41,8 +39,8 @@ export default function VideoCard({ video, isSingle }: { video: Video; isSingle:
                 ;(body.style as any).zoom=''
                 html.style.scrollBehavior=''
                 body.style.scrollBehavior=''
-                window.scrollTo({ top: window.scrollY, left: 0, behavior: 'auto' })
-            }, 300)
+                window.scrollTo({ left: 0, top: scrollTop, behavior: 'auto' })
+            }, 50)
         }
 
         const handleFullscreenChange=()=>{
@@ -55,22 +53,16 @@ export default function VideoCard({ video, isSingle }: { video: Video; isSingle:
             setTimeout(resetPage, 100)
         }
 
-        const handleResize=()=>{
-            resetPage()
-        }
-
         document.addEventListener('fullscreenchange', handleFullscreenChange)
         document.addEventListener('webkitfullscreenchange', handleFullscreenChange)
         document.addEventListener('webkitendfullscreen', handleFullscreenChange)
         window.addEventListener('orientationchange', handleOrientationChange)
-        window.addEventListener('resize', handleResize)
 
         return ()=>{
             document.removeEventListener('fullscreenchange', handleFullscreenChange)
             document.removeEventListener('webkitfullscreenchange', handleFullscreenChange)
             document.removeEventListener('webkitendfullscreen', handleFullscreenChange)
             window.removeEventListener('orientationchange', handleOrientationChange)
-            window.removeEventListener('resize', handleResize)
         }
     }, [])
 
