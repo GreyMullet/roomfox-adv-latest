@@ -8,6 +8,7 @@ type Video={
 }
 
 export default function VideoCard({ video, isSingle }: { video: Video; isSingle: boolean }){
+    console.log("vid")
     return(
         <article
             className={`group relative cursor-pointer rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-md hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-300 hover:-translate-y-1 ${
