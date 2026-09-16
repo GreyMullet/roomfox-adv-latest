@@ -181,7 +181,7 @@ export const CLIENTS: Client[]=[
     { name: "Санаторий «Эллада»", location: "Анапа", gradient: "from-emerald-400 to-teal-400" },
     { name: "Гостевой дом «Уютное море»", location: "Анапа", gradient: "from-sky-400 to-blue-500" },
     { name: "Гостевой дом «В гостях у Светланы»", location: "Анапа", gradient: "from-violet-400 to-fuchsia-400" },
-    { name: "База отдыха «Янисъярви»", location: "Карелия", gradient: "from-rose-400 to-pink-400" },
+    //{ name: "База отдыха «Янисъярви»", location: "Карелия", gradient: "from-rose-400 to-pink-400" },
     { name: "Крио - Алтай", location: "Алтай", gradient: "from-lime-400 to-green-400" },
 ]
 
