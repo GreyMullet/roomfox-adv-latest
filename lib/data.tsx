@@ -41,6 +41,7 @@ export interface Ability{
 
 export const NAV_LINKS: NavLink[]=[
     { href: "#features", label: "Возможности" },
+    { href: "#preview", label: "Обзор" },
     { href: "#how-it-works", label: "Как работает" },
     { href: "#integrations", label: "Интеграции" },
     { href: "#contact", label: "Оставить заявку" },
